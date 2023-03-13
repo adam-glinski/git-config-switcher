@@ -1,7 +1,11 @@
+mod add;
 mod cli;
 
+use std::collections::HashMap;
+
 fn main() {
-    let matches = cli::show_cli();
+    let matches = cli::show_cli()Q;
+    cli::resolve_params(matches, HashMap::from([("add", &(add::on_add))]));
 
     match matches.subcommand() {
         Some(("add", sub_matches)) => println!(
