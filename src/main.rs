@@ -1,19 +1,15 @@
 mod add;
 mod cli;
+mod types;
 
-use std::collections::HashMap;
+use std::{collections::HashMap};
+
+
 
 fn main() {
-    let matches = cli::show_cli()Q;
-    cli::resolve_params(matches, HashMap::from([("add", &(add::on_add))]));
+    let matches = cli::show_cli();
+    let mut functions: HashMap<String, types::Callback> = HashMap::new();
+    functions.insert("add".to_string(), add::on_add);
 
-    match matches.subcommand() {
-        Some(("add", sub_matches)) => println!(
-            "'add' was used, name is: {:?}, email is: {:?}, alias is: {:?}",
-            sub_matches.get_one::<String>("NAME"),
-            sub_matches.get_one::<String>("EMAIL"),
-            sub_matches.get_one::<String>("ALIAS")
-        ),
-        _ => unreachable!("Exhausted list of subcommands and subcommand_required prevents `None`"),
-    }
+    cli::resolve_params(&matches, functions);
 }

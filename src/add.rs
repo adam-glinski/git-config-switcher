@@ -1,5 +1,7 @@
 use clap::ArgMatches;
 
-pub fn on_add(sub_matches: &ArgMatches) {
-    todo!();
+// TODO: Rename param
+pub fn on_add(_sub_matches: &ArgMatches) {
+    println!("on_add called");
 }
+

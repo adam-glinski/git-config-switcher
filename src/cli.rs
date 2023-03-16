@@ -1,5 +1,8 @@
-use clap::{arg, command, Arg, ArgMatches, Command};
+// mod types;
+
+use clap::{arg, command, ArgMatches, Command};
 use std::collections::HashMap;
+
 
 /// @TODO: Change name to smthign more accurate
 pub fn show_cli() -> ArgMatches {
@@ -32,7 +35,7 @@ pub fn show_cli() -> ArgMatches {
     return matches;
 }
 
-pub fn resolve_params(matches: ArgMatches, function_map: HashMap<&str, &dyn Fn(&ArgMatches)>) {
+pub fn resolve_params(matches: &ArgMatches, function_map: HashMap<String, fn(&ArgMatches)>) {
     let on_add = function_map.get("add").unwrap();
     match matches.subcommand() {
         Some(("add", sub_matches)) => on_add(sub_matches),
