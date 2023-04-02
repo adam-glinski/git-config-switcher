@@ -35,20 +35,13 @@ pub fn show_cli() -> ArgMatches {
 
 
     return matches;
-    /*
-    if let Some(ref matches) = matches.subcommand_matches("add") {
-        if let Some(name) = matches.get_one::<String>("name") {
-            println!("name {}", name.as_str());
-        };
-    }
-     */
 }
 
 pub fn resolve_params(matches: &ArgMatches, function_map: HashMap<String, fn(&ArgMatches)>) {
     let on_add = function_map.get("add").unwrap();
     match matches.subcommand() {
         // @TODO: rearrange
-        Some(("add", _sub_matches)) => on_add(matches),
+        Some(("add", sub_matches)) => on_add(sub_matches),
 
         _ => unreachable!("Exhausted list of subcommands and subcommand_required prevents `None`"),
     }

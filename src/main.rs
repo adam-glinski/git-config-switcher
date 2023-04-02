@@ -1,6 +1,7 @@
 mod add;
 mod cli;
 mod types;
+mod utils;
 
 use std::{collections::HashMap};
 
