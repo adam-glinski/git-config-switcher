@@ -13,23 +13,27 @@ pub fn show_cli() -> ArgMatches {
         .subcommand(
             Command::new("add")
                 .about("Adds new author to the list.")
-                .arg(Arg::new("name"))
-                .args([
-                    arg!([NAME] "Author name."),
-                    arg!([EMAIL] "Author email."),
-                    arg!([ALIAS] "Config alias."),
-                ]),
+                .arg(Arg::new("name").help("Author name.").required(true))
+                .arg(Arg::new("email").help("Author email.").required(true))
+                .arg(Arg::new("alias").help("Config alias.").required(true))
+                .visible_alias("a")
         )
-        .subcommand(Command::new("list").about("List all saved configs."))
+        .subcommand(
+            Command::new("list").about("List all saved configs.")
+            .visible_alias("l")
+            .visible_alias("ls")
+        )
         .subcommand(
             Command::new("remove")
                 .about("Remove config.")
-                .arg(arg!([ALIAS] "Config alias.")),
+                .arg(Arg::new("alias").help("Config alias meant to be removed.").required(true))
+                .visible_alias("r")
         )
         .subcommand(
             Command::new("switch")
                 .about("Switch config.")
-                .arg(arg!([ALIAS] "Config alias.")),
+                .arg(Arg::new("alias").help("Config alias that you want to switch to.").required(true))
+                .visible_alias("s")
         )
         .get_matches();
 
