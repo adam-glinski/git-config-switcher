@@ -3,8 +3,7 @@ mod cli;
 mod types;
 mod utils;
 
-use std::{collections::HashMap};
-
+use std::collections::HashMap;
 
 
 fn main() {

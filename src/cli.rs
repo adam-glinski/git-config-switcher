@@ -1,6 +1,7 @@
 // mod types;
 
-use clap::{arg, ArgMatches, Command, Arg};
+use crate::types;
+use clap::{ArgMatches, Command, Arg};
 use std::collections::HashMap;
 
 
@@ -41,7 +42,7 @@ pub fn show_cli() -> ArgMatches {
     return matches;
 }
 
-pub fn resolve_params(matches: &ArgMatches, function_map: HashMap<String, fn(&ArgMatches)>) {
+pub fn resolve_params(matches: &ArgMatches, function_map: HashMap<String, types::Callback>) -> Result<(), serde_json::Error> {
     let on_add = function_map.get("add").unwrap();
     match matches.subcommand() {
         // @TODO: rearrange
