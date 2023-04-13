@@ -1,0 +1,58 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug add cmd",
+            "type":"cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/target/debug/gitswitcher.exe",
+            "args": ["add", "John Doe", "john.doe@email.com", "work"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            // "externalConsole": false
+
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug add command",
+            "cargo": {
+                "args": [
+                    "run",
+                    "--bin=gitswitcher",
+                    "--package=git-config-switcher",
+                    // "add \"John Doe\" john.doe@email.com work"
+                ],
+                "filter": {
+                    "name": "gitswitcher",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'gitswitcher'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=gitswitcher",
+                    "--package=git-config-switcher"
+                ],
+                "filter": {
+                    "name": "gitswitcher",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

@@ -11,5 +11,7 @@ fn main() {
     let mut functions: HashMap<String, types::Callback> = HashMap::new();
     functions.insert("add".to_string(), add::on_add);
 
-    cli::resolve_params(&matches, functions);
+    if let Err(err) = cli::resolve_params(&matches, functions) {
+        println!("Error: {}", err);
+    }
 }
