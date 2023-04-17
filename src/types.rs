@@ -4,7 +4,8 @@ use clap::ArgMatches;
 use serde::{Serialize, Deserialize};
 use serde_json::error::Result;
 
-pub type AddCallback = fn(&ArgMatches, &mut HashMap<String, Config>) -> Result<()>;
+pub type ConfigsMap = HashMap<String, Config>;
+pub type Callback = fn(&ArgMatches, &mut ConfigsMap) -> Result<()>;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Config {
