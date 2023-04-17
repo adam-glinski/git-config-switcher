@@ -20,13 +20,11 @@ fn get_config_dir() -> String {
 
     create_dir_all(&_file_path).expect("Failed to create directory!");
     _file_path.push_str("data.json");
-    dbg!(&_file_path);
     return _file_path;
 }
 
 pub fn save_configs_to_file(map: &HashMap<String, types::Config>) -> std::io::Result<()> {
     let file = File::create(get_config_dir())?;
-    dbg!(map);
     to_writer_pretty(file, map)?;
     Ok(())
 }

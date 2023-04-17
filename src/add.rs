@@ -2,7 +2,6 @@ use crate::types::{Config, ConfigsMap};
 use crate::utils;
 
 use clap::ArgMatches;
-use serde_json;
 use std::dbg;
 
 fn extract_config(matches: &ArgMatches) -> (String, Config) {
@@ -22,7 +21,7 @@ fn extract_config(matches: &ArgMatches) -> (String, Config) {
 pub fn on_add(
     sub_matches: &ArgMatches,
     configs_map: &mut ConfigsMap,
-) -> serde_json::Result<()> {
+) {
 
     let (alias, config) = extract_config(sub_matches);
     configs_map.insert(alias, config);
@@ -30,7 +29,7 @@ pub fn on_add(
     utils::save_configs_to_file(configs_map).expect("Failed to save config!");
 
     dbg!(configs_map);
-    Ok(())
+    // Ok(())
 }
 
 // #[cfg(tests)]

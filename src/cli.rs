@@ -1,6 +1,10 @@
-use crate::types::{Config, ConfigsMap, Callback};
 use clap::{ArgMatches, Command, Arg};
-use std::collections::HashMap;
+
+use crate::types::ConfigsMap;
+use crate::add::on_add;
+use crate::list::on_list;
+
+
 
 
 /// @TODO: Change name to smthign more accurate
@@ -40,11 +44,10 @@ pub fn show_cli() -> ArgMatches {
     return matches;
 }
 
-pub fn resolve_params(matches: &ArgMatches, function_map: HashMap<String, Callback>, configs_map: &mut ConfigsMap) -> Result<(), serde_json::Error> {
-    let on_add = function_map.get("add").unwrap();
+pub fn resolve_params(matches: &ArgMatches, configs_map: &mut ConfigsMap) {
     match matches.subcommand() {
         Some(("add", sub_matches)) => on_add(sub_matches, configs_map),
-        Some(("list", sub_matches)) => on_list(sub_matches, configs_map),
+        Some(("list", _sub_matches)) => on_list(configs_map),
 
         _ => unreachable!("Exhausted list of subcommands and subcommand_required prevents `None`"),
     }
