@@ -1,5 +1,4 @@
 use prettytable::{Table, row};
-
 use crate::types::ConfigsMap;
 
 pub fn on_list(configs_map: &mut ConfigsMap) {

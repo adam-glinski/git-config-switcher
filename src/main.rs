@@ -3,6 +3,7 @@ mod cli;
 mod types;
 mod utils;
 mod list;
+mod remove;
 
 
 fn main() -> std::io::Result<()> {
