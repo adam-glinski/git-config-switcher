@@ -2,12 +2,14 @@ use crate::types::{Config, ConfigsMap};
 use crate::utils;
 
 use clap::ArgMatches;
-use std::dbg;
 
 fn extract_config(matches: &ArgMatches) -> (String, Config) {
-    let Some(ref name) = matches.get_one::<String>("name") else { panic!("Missing name! Use help command to view usage.") };
-    let Some(ref email) = matches.get_one::<String>("email") else { panic!("Missing email! Use help command to view usage.") };
-    let Some(ref alias) = matches.get_one::<String>("alias") else { panic!("Missing alias! Use help command to view usage.") };
+    let Some(ref name) = matches.get_one::<String>("name")
+        else { panic!("Missing name! Use help command to view usage.") };
+    let Some(ref email) = matches.get_one::<String>("email")
+        else { panic!("Missing email! Use help command to view usage.") };
+    let Some(ref alias) = matches.get_one::<String>("alias")
+        else { panic!("Missing alias! Use help command to view usage.") };
 
     (
         alias.to_string(),

@@ -28,13 +28,15 @@ pub fn show_cli() -> ArgMatches {
         .subcommand(
             Command::new("remove")
                 .about("Remove config.")
-                .arg(Arg::new("alias").help("Config alias meant to be removed.").required(true))
+                .arg(Arg::new("alias").help("Config alias meant to be removed.")
+                    .required(true))
                 .visible_alias("r")
         )
         .subcommand(
             Command::new("switch")
                 .about("Switch config.")
-                .arg(Arg::new("alias").help("Config alias that you want to switch to.").required(true))
+                .arg(Arg::new("alias").help("Config alias that you want to switch to.")
+                    .required(true))
                 .visible_alias("s")
         )
         .get_matches();
