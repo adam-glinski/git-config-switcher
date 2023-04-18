@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use std::env;
 use std::fs::{File, create_dir_all};
 use serde_json::{to_writer_pretty, from_reader};
+#[allow(unused_imports)]
 use std::dbg;
 use std::io::BufReader;
 
@@ -13,13 +14,17 @@ fn get_config_dir() -> String {
         _file_path = env::var("APPDATA").unwrap();
         _file_path.push_str("\\.git_config_switcher\\")
     } else if cfg!(unix) {
-        _file_path = String::from("~/.git_config_switcher/");
+        // _file_path = String::from("~/.git_config_switcher/");
+        _file_path = env::var("HOME").unwrap();
+        _file_path.push_str("/.config/.git_config_switcher/");
     } else {
         panic!("Unsupported os!");
     }
 
+    // TODO: Fix me, not working on unix
     create_dir_all(&_file_path).expect("Failed to create directory!");
     _file_path.push_str("data.json");
+    dbg!(&_file_path);
     return _file_path;
 }
 
