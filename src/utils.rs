@@ -22,7 +22,7 @@ fn get_config_dir() -> String {
     }
 
     // TODO: Fix me, not working on unix
-    create_dir_all(&_file_path).expect("Failed to create directory!");
+    create_dir_all(&_file_path).unwrap_or_else(|e| panic!("Error while creating directory: {e}"));
     _file_path.push_str("data.json");
     dbg!(&_file_path);
     return _file_path;

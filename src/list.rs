@@ -4,7 +4,7 @@ use crate::types::ConfigsMap;
 
 pub fn on_list(configs_map: &mut ConfigsMap) {
     let mut table = Table::new();
-    table.add_row(row![bFg->"ALIAS", bFg->"NAME", bFg->"EMAIL"]);
+    table.add_row(row![bFg->"Config alias", bFg->"Author name", bFg->"Author email"]);
 
     for config_alias in configs_map.keys() {
         let config = configs_map.get(config_alias).unwrap();
