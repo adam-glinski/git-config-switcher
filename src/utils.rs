@@ -19,7 +19,8 @@ fn get_config_dir() -> String {
         panic!("Unsupported os!");
     }
 
-    create_dir_all(&_file_path).unwrap_or_else(|e| panic!("Error while creating directory: {e}"));
+    create_dir_all(&_file_path).unwrap_or_else(|e|
+        panic!("Error while creating directory: {e}"));
     _file_path.push_str("data.json");
     return _file_path;
 }
