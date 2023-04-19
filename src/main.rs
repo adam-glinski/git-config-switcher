@@ -4,6 +4,7 @@ mod types;
 mod utils;
 mod list;
 mod remove;
+mod switch;
 
 
 fn main() -> std::io::Result<()> {

@@ -4,6 +4,7 @@ use crate::types::ConfigsMap;
 use crate::add::on_add;
 use crate::list::on_list;
 use crate::remove::on_remove;
+use crate::switch::on_switch;
 
 
 /// @TODO: Change name to smthign more accurate
@@ -50,6 +51,7 @@ pub fn resolve_params(matches: &ArgMatches, configs_map: &mut ConfigsMap) {
         Some(("add", sub_matches)) => on_add(sub_matches, configs_map),
         Some(("list", _sub_matches)) => on_list(configs_map),
         Some(("remove", sub_matches)) => on_remove(sub_matches, configs_map),
+        Some(("switch", sub_matches)) => on_switch(sub_matches, configs_map),
 
         _ => unreachable!("Exhausted list of subcommands and subcommand_required prevents `None`"),
     }
