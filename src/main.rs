@@ -1,11 +1,10 @@
 mod add;
 mod cli;
-mod types;
-mod utils;
 mod list;
 mod remove;
 mod switch;
-
+mod types;
+mod utils;
 
 fn main() -> std::io::Result<()> {
     let matches = cli::show_cli();

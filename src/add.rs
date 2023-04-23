@@ -16,15 +16,11 @@ fn extract_config(matches: &ArgMatches) -> (String, Config) {
         Config {
             name: name.to_string(),
             email: email.to_string(),
-        },
+        }
     )
 }
 
-pub fn on_add(
-    sub_matches: &ArgMatches,
-    configs_map: &mut ConfigsMap,
-) {
-
+pub fn on_add(sub_matches: &ArgMatches, configs_map: &mut ConfigsMap) {
     let (alias, config) = extract_config(sub_matches);
     configs_map.insert(alias, config);
 
