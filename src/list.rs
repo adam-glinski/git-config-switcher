@@ -1,5 +1,5 @@
-use prettytable::{Table, row};
 use crate::types::ConfigsMap;
+use prettytable::{row, Table};
 
 pub fn on_list(configs_map: &mut ConfigsMap) {
     let mut table = Table::new();

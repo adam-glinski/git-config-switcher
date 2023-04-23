@@ -1,8 +1,8 @@
 use crate::types;
+use serde_json::{from_reader, to_writer_pretty};
 use std::collections::HashMap;
 use std::env;
-use std::fs::{File, create_dir_all};
-use serde_json::{to_writer_pretty, from_reader};
+use std::fs::{create_dir_all, File};
 use std::io::BufReader;
 use std::io::ErrorKind;
 
@@ -19,8 +19,7 @@ fn get_config_dir() -> String {
         panic!("Unsupported os!");
     }
 
-    create_dir_all(&_file_path).unwrap_or_else(|e|
-        panic!("Error while creating directory: {e}"));
+    create_dir_all(&_file_path).unwrap_or_else(|e| panic!("Error while creating directory: {e}"));
     _file_path.push_str("data.json");
     return _file_path;
 }
@@ -46,8 +45,6 @@ pub fn load_configs_from_file() -> HashMap<String, types::Config> {
     let map: Result<HashMap<String, types::Config>, serde_json::Error> = from_reader(reader);
     match map {
         Ok(map) => map,
-        Err(_e) => {
-            HashMap::new()
-        }
+        Err(_e) => HashMap::new(),
     }
 }
